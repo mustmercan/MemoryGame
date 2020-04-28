@@ -1,0 +1,150 @@
+html,body{
+	margin:0;
+	padding:0;
+	text-align:center;
+}
+
+#canvas-game{
+	margin:0 auto;
+	text-align:left;
+	width:612px;
+	margin-top:20px;
+	border:Solid 1px #ebe5e5;
+	height:385px;
+	position:relative;
+}
+
+#game-statistic{
+	margin:0 auto;
+	text-align:left;
+	width:612px;
+	margin-top:20px;
+}
+
+
+#statistic-left, #statistic-right{
+	font-style:italic;
+	font-size:12px;
+	float:left;
+}
+
+#statistic-right{
+	float:right;
+}
+
+.bold-text{
+	font-weight:bold;
+}
+
+.clear{
+	clear:both;
+}
+
+.box-picture{
+	float:left;
+	width:100px;
+	height:75px;
+	border:solid 1px #ebe5e5;
+        display:none;
+}
+
+
+.cell > img{
+	width:100px;
+	height:75px;
+}
+
+.box-cover-wrapper{
+	position:absolute;
+	left:0;
+	top:0;
+	z-index:100;
+}
+
+.box-cover{
+	width:100px;
+	height:75px;
+	background:url(game-images/image-cover.jpg) no-repeat;
+	border:solid 1px #ebe5e5;
+	float:left;
+	cursor:pointer;
+}
+
+#game-message{
+	margin:0 auto;
+	font-size:20px;
+	background:#f7f5b5;
+	padding:15px;
+	border:solid 1px #ccc;
+	border-radius:5px;
+	width:612px;
+	display:none;
+}
+
+#btnRestart{
+	padding:15px;
+	font-weight:bold;
+	text-align:center;
+	background:#043255;
+	text-decoration:uppercase;
+	margin-top:20px;
+	color:#fff;
+	border:none;
+	border-radius:5px;
+	cursor:pointer;
+}
+
+/**** IF SCREEN SIZE IS NO LARGER THAN 640px ****/
+@media (max-width: 640px) {
+	#canvas-game{
+		width:385px;
+		height:348px;
+	}
+	
+	.box-picture, .box-picture > img, .box-cover{
+		width:75px;
+		height:56px;
+	}
+	
+	.box-cover{
+		background:url(game-images/image-cover-75.jpg) no-repeat;
+	}
+	
+	#game-statistic{
+		margin-top:20px;
+	}
+	
+	#game-message, #game-statistic{
+		width:385px;
+	}
+	
+}
+
+/**** IF SCREEN SIZE IS NO LARGER THAN 320px ****/
+@media (max-width: 320px) {
+	#canvas-game{
+		width:156px;
+		height:390px;
+	}
+	
+	.box-picture, .box-picture > img, .box-cover{
+		width:50px;
+		height:38px;
+	}
+	
+	.box-cover{
+		background:url(game-images/image-cover-50.jpg) no-repeat;
+	}
+	
+	#game-statistic{
+		margin-top:20px;
+	}
+	
+	#game-message, #game-statistic{
+		width:156px;
+	}
+	
+	#statistic-left, #statistic-right{
+		float:none;
+	}
+}

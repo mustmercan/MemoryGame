@@ -1,0 +1,101 @@
+<html>
+
+<head>
+	<title>Game</title>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" type="text/css"
+		rel="stylesheet" />
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+	<link href="game.css" type="text/css" rel="stylesheet" />
+	<meta charset="UTF-8" />
+
+	<style>
+		p.b {
+			font-family: "Courier New";
+		}
+
+		.row {
+			display: block;
+			clear: both;
+		
+		}
+
+		.cell img {
+			width:100px;
+			height:75px;
+		}
+
+		.cell {
+			display: block;
+			clear: none;
+			float: left;
+			padding: 1px;
+		}
+	</style>
+</head>
+
+<body>
+
+
+	<p class="b">
+		<br>-
+		
+		<div id="canvas-game">
+			<div id="game"></div>
+		</div>
+		<div id="game-statistic">
+			<div id="statistic-left">Tıklama Sayısı: <span id="no-of-clicks" class="bold-text">0</span></div>
+			<div id="statistic-right">Doğru Tahmin Sayısı: <span id="correct-guess" class="bold-text">0</span> Geçen Süre:
+				<span id="timing" class="bold-text">0dk 0sn</span></div>
+			<div class="clear"></div>
+		</div>
+		<button id="btnStart" type="button">Oyna</button>
+		<div id="game-message">
+			<div class="congrats-message">Tebrikler tüm resimleri eşleştirdin! En Kısa Sürede Sen Tamamla Büyük Ödülü Kaçırma!
+			</div>
+			<button id="btnRestart" type="button">Tekrar Oyna</button>
+		</div>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script src="memoryGame.min.js"></script>
+		<script>
+			$(function () {
+
+				var m = new MemoryGame({
+					onAfterClick: function (c, clickCount, score) {
+						console.log("Count:" + clickCount + " Score:" + score);
+						$("#no-of-clicks").text(clickCount);
+						$("#correct-guess").text(score);
+					},
+					onFinishGame: function (clickCount, score, timing) {
+						console.log(clickCount, score, new Date(timing));
+						$("#game-message").show();
+						
+					},
+					onSecondTimer: function (clickCount, score, timing) {
+						var t = new Date(timing);
+						$("#no-of-clicks").text(clickCount);
+						$("#correct-guess").text(score);
+						$("#timing").text(t.getMinutes() + " dk. " + t.getSeconds() + " sn.");
+					},
+					screenBoxCount: { row: 5, col: 6 },
+					onStartGame:function(startTime,_options){
+						$("#game-message").hide();
+						$("#btnStart").hide();
+					}
+				}
+				
+				);
+				m.renderLayout();
+				$("#btnStart").on("click",function () {
+					m.startGame();
+				})
+				$("#btnRestart").on("click",function () {
+					m.startGame();
+				})
+			})
+		</script>
+
+</body>
+
+</html>
